@@ -100,14 +100,14 @@ export default class Story extends Node {
   };
 
   inputRules({ type }) {
-    return [wrappingInputRule(/^:::$/, type)];
+    return [wrappingInputRule(/^%%%$/, type)];
   }
 
   toMarkdown(state, node) {
-    state.write("\n:::" + (node.attrs.id || "story") + "\n");
+    state.write("\n%%%" + (node.attrs.id || "story") + "\n");
     state.renderContent(node);
     state.ensureNewLine();
-    state.write(":::");
+    state.write("%%%");
     state.closeBlock(node);
     console.log(state);
   }
