@@ -18,10 +18,10 @@ export default class Story extends Node {
         }[];
         toDOM: (node: any) => (string | HTMLDivElement | {
             class: string;
-        } | (string | number | {
-            class: string;
-        })[] | (string | HTMLButtonElement | {
+        } | (string | HTMLButtonElement | {
             contentEditable: boolean;
+        })[] | (string | number | {
+            class: string;
         })[])[];
     };
     commands({ type }: {

@@ -27,7 +27,7 @@ export default class Story extends Node {
           tag: "div.story-block",
           preserveWhitespace: "full",
           contentElement: "div:last-child",
-          getAttrs: () => "warning",
+          getAttrs: () => "story",
         },
       ],
       toDOM: node => {
@@ -64,8 +64,8 @@ export default class Story extends Node {
           "div",
           { class: `story-block ${node.attrs.id}` },
           icon,
-          ["div", { class: "content story-content" }, 0],
           ["div", { contentEditable: false }, button],
+          ["div", { class: "content story-content" }, 0],
         ];
       },
     };
@@ -80,7 +80,7 @@ export default class Story extends Node {
   }
 
   toMarkdown(state, node) {
-    state.write("\n%%%" + (node.attrs.id || "story") + "\n");
+    state.write("\n%%%" + "story" + "\n");
     state.renderContent(node);
     state.ensureNewLine();
     state.write("%%%");

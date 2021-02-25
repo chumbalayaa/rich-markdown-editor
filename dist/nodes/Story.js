@@ -29,7 +29,7 @@ class Story extends Node_1.default {
                     tag: "div.story-block",
                     preserveWhitespace: "full",
                     contentElement: "div:last-child",
-                    getAttrs: () => "warning",
+                    getAttrs: () => "story",
                 },
             ],
             toDOM: node => {
@@ -55,8 +55,8 @@ class Story extends Node_1.default {
                     "div",
                     { class: `story-block ${node.attrs.id}` },
                     icon,
-                    ["div", { class: "content story-content" }, 0],
                     ["div", { contentEditable: false }, button],
+                    ["div", { class: "content story-content" }, 0],
                 ];
             },
         };
@@ -68,7 +68,7 @@ class Story extends Node_1.default {
         return [prosemirror_inputrules_1.wrappingInputRule(/^%%%$/, type)];
     }
     toMarkdown(state, node) {
-        state.write("\n%%%" + (node.attrs.id || "story") + "\n");
+        state.write("\n%%%" + "story" + "\n");
         state.renderContent(node);
         state.ensureNewLine();
         state.write("%%%");
