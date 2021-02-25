@@ -37,9 +37,7 @@ export default class Story extends Node {
     toMarkdown(state: any, node: any): void;
     parseMarkdown(): {
         block: string;
-        getAttrs: (tok: any) => {
-            id: any;
-        };
+        getAttrs: (tok: any) => void;
     };
 }
 //# sourceMappingURL=Story.d.ts.map

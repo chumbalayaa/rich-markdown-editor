@@ -126,7 +126,7 @@ function blockMenuItems(dictionary) {
             title: dictionary.story,
             icon: outline_icons_1.WarningIcon,
             keywords: "container_story",
-            attrs: { style: "tip" },
+            attrs: { id: "story" },
         },
     ];
 }

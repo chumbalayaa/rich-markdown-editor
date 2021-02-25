@@ -146,7 +146,7 @@ export default function blockMenuItems(
       title: dictionary.story,
       icon: WarningIcon,
       keywords: "container_story",
-      attrs: { style: "tip" },
+      attrs: { id: "story" },
     },
   ];
 }

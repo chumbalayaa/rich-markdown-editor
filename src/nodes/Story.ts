@@ -115,7 +115,10 @@ export default class Story extends Node {
   parseMarkdown() {
     return {
       block: "container_story",
-      getAttrs: tok => ({ id: tok.info }),
+      getAttrs: tok => {
+        console.log(tok);
+        ({ id: tok.info });
+      },
     };
   }
 }
