@@ -16,9 +16,7 @@ export default class Story extends Node {
   get schema() {
     return {
       attrs: {
-        id: {
-          default: "1",
-        },
+        id: this.randomInt.toString(),
       },
       content: "block+",
       group: "block",
@@ -35,7 +33,7 @@ export default class Story extends Node {
       toDOM: node => {
         const button = document.createElement("button");
 
-        node.attrs.id = node.attrs.id === "1" ? "1" : node.attrs.id;
+        console.log(node.attrs.id);
         const tmpID = node.attrs.id;
 
         button.addEventListener(
