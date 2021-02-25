@@ -17,7 +17,7 @@ export default class Story extends Node {
     return {
       attrs: {
         id: {
-          default: "story",
+          default: "1",
         },
       },
       content: "block+",
@@ -35,14 +35,13 @@ export default class Story extends Node {
       toDOM: node => {
         const button = document.createElement("button");
 
-        node.attrs.id =
-          node.attrs.id === "story" ? Math.random() * 1000 : node.attrs.id;
+        node.attrs.id = node.attrs.id === "1" ? "1" : node.attrs.id;
         const tmpID = node.attrs.id;
 
-        // button.addEventListener("click", this.addClickHandler());
         button.addEventListener(
           "click",
           (function (node) {
+            console.log(">", node);
             return function (e) {
               console.log(e, node, tmpID);
             };
@@ -77,27 +76,6 @@ export default class Story extends Node {
   commands({ type }) {
     return attrs => toggleWrap(type, attrs);
   }
-
-  addClickHandler = (elem, arg1) => {
-    elem.addEventListener(
-      "click",
-      function (e) {
-        console.log(e.target);
-        alert("Story Button Clicked for " + arg1);
-        console.log(arg1);
-        return;
-      },
-      false
-    );
-  };
-
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  handleButtonClick = (event: MouseEvent) => {
-    console.log(event.target);
-    alert("Story Button Clicked for " + this.schema.attrs.id);
-    console.log(this.schema.attrs.id);
-    return;
-  };
 
   inputRules({ type }) {
     return [wrappingInputRule(/^%%%$/, type)];
