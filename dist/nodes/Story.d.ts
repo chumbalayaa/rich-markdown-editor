@@ -4,9 +4,7 @@ export default class Story extends Node {
     get randomInt(): number;
     get schema(): {
         attrs: {
-            id: {
-                default: string;
-            };
+            id: string;
         };
         content: string;
         group: string;
@@ -29,8 +27,6 @@ export default class Story extends Node {
     commands({ type }: {
         type: any;
     }): (attrs: any) => (state: any, dispatch: any) => boolean;
-    addClickHandler: (elem: any, arg1: any) => void;
-    handleButtonClick: (event: MouseEvent) => void;
     inputRules({ type }: {
         type: any;
     }): import("prosemirror-inputrules").InputRule<any>[];

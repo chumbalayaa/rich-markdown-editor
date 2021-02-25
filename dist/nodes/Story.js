@@ -9,23 +9,6 @@ const react_dom_1 = __importDefault(require("react-dom"));
 const Node_1 = __importDefault(require("./Node"));
 const StoryIcon_1 = __importDefault(require("./StoryIcon"));
 class Story extends Node_1.default {
-    constructor() {
-        super(...arguments);
-        this.addClickHandler = (elem, arg1) => {
-            elem.addEventListener("click", function (e) {
-                console.log(e.target);
-                alert("Story Button Clicked for " + arg1);
-                console.log(arg1);
-                return;
-            }, false);
-        };
-        this.handleButtonClick = (event) => {
-            console.log(event.target);
-            alert("Story Button Clicked for " + this.schema.attrs.id);
-            console.log(this.schema.attrs.id);
-            return;
-        };
-    }
     get name() {
         return "container_story";
     }
@@ -35,9 +18,7 @@ class Story extends Node_1.default {
     get schema() {
         return {
             attrs: {
-                id: {
-                    default: "story",
-                },
+                id: this.randomInt.toString(),
             },
             content: "block+",
             group: "block",
@@ -53,10 +34,10 @@ class Story extends Node_1.default {
             ],
             toDOM: node => {
                 const button = document.createElement("button");
-                node.attrs.id =
-                    node.attrs.id === "story" ? Math.random() * 1000 : node.attrs.id;
+                console.log(node.attrs.id);
                 const tmpID = node.attrs.id;
                 button.addEventListener("click", (function (node) {
+                    console.log(">", node);
                     return function (e) {
                         console.log(e, node, tmpID);
                     };
