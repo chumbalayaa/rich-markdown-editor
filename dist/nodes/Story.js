@@ -84,13 +84,13 @@ class Story extends Node_1.default {
         return attrs => toggleWrap_1.default(type, attrs);
     }
     inputRules({ type }) {
-        return [prosemirror_inputrules_1.wrappingInputRule(/^:::$/, type)];
+        return [prosemirror_inputrules_1.wrappingInputRule(/^%%%$/, type)];
     }
     toMarkdown(state, node) {
-        state.write("\n:::" + (node.attrs.id || "story") + "\n");
+        state.write("\n%%%" + (node.attrs.id || "story") + "\n");
         state.renderContent(node);
         state.ensureNewLine();
-        state.write(":::");
+        state.write("%%%");
         state.closeBlock(node);
         console.log(state);
     }
