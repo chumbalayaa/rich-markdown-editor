@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { toggleMark } from "prosemirror-commands";
 import { Plugin } from "prosemirror-state";
 import { InputRule } from "prosemirror-inputrules";
@@ -112,7 +113,7 @@ export default class Link extends Mark {
               }
               return false;
             },
-            click: (view, event: KeyboardEvent) => {
+            click: (view, event: any) => {
               // allow opening links in editing mode with the meta/cmd key
               if (
                 view.props.editable &&
@@ -162,9 +163,9 @@ export default class Link extends Mark {
         return isPlainURL(mark, parent, index, -1)
           ? ">"
           : "](" +
-              state.esc(mark.attrs.href) +
-              (mark.attrs.title ? " " + state.quote(mark.attrs.title) : "") +
-              ")";
+          state.esc(mark.attrs.href) +
+          (mark.attrs.title ? " " + state.quote(mark.attrs.title) : "") +
+          ")";
       },
     };
   }

@@ -299,6 +299,10 @@ class BlockMenu extends React.Component<Props, State> {
     if (command) {
       command(item.attrs);
     } else {
+      console.log(this.props.commands);
+      console.log(item.name);
+      console.log(this.props.commands[item.name]);
+      console.log(item.attrs);
       this.props.commands[`create${capitalize(item.name)}`](item.attrs);
     }
 

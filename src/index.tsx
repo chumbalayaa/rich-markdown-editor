@@ -69,6 +69,7 @@ import Placeholder from "./plugins/Placeholder";
 import SmartText from "./plugins/SmartText";
 import TrailingNode from "./plugins/TrailingNode";
 import MarkdownPaste from "./plugins/MarkdownPaste";
+import Story from "./nodes/Story";
 
 export { schema, parser, serializer } from "./server";
 
@@ -187,8 +188,11 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Props) {
     // Allow changes to the 'value' prop to update the editor from outside
+    console.log(this.props);
+    console.log(this.props.value);
     if (this.props.value && prevProps.value !== this.props.value) {
       const newState = this.createState(this.props.value);
+      console.log(newState);
       this.view.updateState(newState);
     }
 
@@ -279,6 +283,9 @@ class RichMarkdownEditor extends React.PureComponent<Props, State> {
         new Embed(),
         new ListItem(),
         new Notice({
+          dictionary,
+        }),
+        new Story({
           dictionary,
         }),
         new Heading({
@@ -972,6 +979,19 @@ const StyledEditor = styled("div")<{
     a {
       color: ${props => props.theme.noticeWarningText};
     }
+  }
+
+  .story-block {
+    background: #add8e6;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .story-content {
+    text-align: left !important;
+    width: 80%;
   }
 
   blockquote {

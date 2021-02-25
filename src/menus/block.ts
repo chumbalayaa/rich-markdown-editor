@@ -138,5 +138,15 @@ export default function blockMenuItems(
       keywords: "container_notice card suggestion",
       attrs: { style: "tip" },
     },
+    {
+      name: "separator",
+    },
+    {
+      name: "container_story",
+      title: dictionary.story,
+      icon: WarningIcon,
+      keywords: "container_story",
+      attrs: { style: "tip" },
+    },
   ];
 }
