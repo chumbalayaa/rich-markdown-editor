@@ -50,7 +50,7 @@ class Story extends Node_1.default {
                     "div",
                     { class: `story-block`, id: node.attrs.id },
                     ["div", { contentEditable: false }, button],
-                    ["div", { class: "content" }, 0],
+                    ["div", { class: "content story-content" }, 0],
                 ];
             },
         };
