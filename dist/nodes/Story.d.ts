@@ -30,6 +30,7 @@ export default class Story extends Node {
             class: string;
         })[])[];
     };
+    handleClick: (event: any) => void;
     commands({ type }: {
         type: any;
     }): (attrs: any) => (state: any, dispatch: any) => boolean;

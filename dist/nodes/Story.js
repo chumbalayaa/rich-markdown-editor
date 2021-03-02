@@ -7,6 +7,12 @@ const prosemirror_inputrules_1 = require("prosemirror-inputrules");
 const toggleWrap_1 = __importDefault(require("../commands/toggleWrap"));
 const Node_1 = __importDefault(require("./Node"));
 class Story extends Node_1.default {
+    constructor() {
+        super(...arguments);
+        this.handleClick = event => {
+            this.editor.props.onStoryClick(event.target.id);
+        };
+    }
     get name() {
         return "container_story";
     }
@@ -41,11 +47,7 @@ class Story extends Node_1.default {
                 button.className = "story-button";
                 button.innerText = "Story";
                 button.id = node.attrs.id;
-                button.addEventListener("click", (function () {
-                    return function (e) {
-                        this.editor.props.onStoryClick(e.target.id);
-                    };
-                })(), false);
+                button.addEventListener("click", this.handleClick);
                 return [
                     "div",
                     { class: `story-block`, id: node.attrs.id },

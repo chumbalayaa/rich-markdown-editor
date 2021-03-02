@@ -40,15 +40,7 @@ export default class Story extends Node {
         button.className = "story-button";
         button.innerText = "Story";
         button.id = node.attrs.id;
-        button.addEventListener(
-          "click",
-          (function () {
-            return function (e) {
-              this.editor.props.onStoryClick(e.target.id);
-            };
-          })(),
-          false
-        );
+        button.addEventListener("click", this.handleClick);
 
         return [
           "div",
@@ -59,6 +51,10 @@ export default class Story extends Node {
       },
     };
   }
+
+  handleClick = event => {
+    this.editor.props.onStoryClick(event.target.id);
+  };
 
   commands({ type }) {
     return attrs => toggleWrap(type, attrs);
