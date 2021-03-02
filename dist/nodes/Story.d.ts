@@ -4,7 +4,9 @@ export default class Story extends Node {
     get randomInt(): number;
     get schema(): {
         attrs: {
-            id: string;
+            id: {
+                default: string;
+            };
         };
         content: string;
         group: string;

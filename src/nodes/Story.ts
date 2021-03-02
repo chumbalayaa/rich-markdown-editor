@@ -1,22 +1,19 @@
 import { wrappingInputRule } from "prosemirror-inputrules";
+import { MarkdownSerializerState } from "prosemirror-markdown";
 import toggleWrap from "../commands/toggleWrap";
-import ReactDOM from "react-dom";
+import { Node as ProsemirrorNode } from "prosemirror-model";
 import Node from "./Node";
-import StoryIcon from "./StoryIcon";
-
 export default class Story extends Node {
   get name() {
     return "container_story";
   }
 
-  get randomInt() {
-    return Math.random() * 10000;
-  }
-
   get schema() {
     return {
       attrs: {
-        id: this.randomInt.toString(),
+        id: {
+          default: "story",
+        },
       },
       content: "block+",
       group: "block",
@@ -27,43 +24,35 @@ export default class Story extends Node {
           tag: "div.story-block",
           preserveWhitespace: "full",
           contentElement: "div:last-child",
-          getAttrs: () => "story",
+          getAttrs: (ele: HTMLDivElement) => {
+            console.log(ele);
+            return { id: ele.getElementsByClassName("story-button")[0].id };
+          },
         },
       ],
       toDOM: node => {
+        node.attrs.id =
+          node.attrs.id === "story"
+            ? Math.round(Math.random() * 10000)
+            : node.attrs.id;
+
         const button = document.createElement("button");
-
-        console.log(node.attrs.id);
-        const tmpID = node.attrs.id;
-
+        button.className = "story-button";
+        button.innerText = "Story";
+        button.id = node.attrs.id;
         button.addEventListener(
           "click",
-          (function (node) {
-            console.log(">", node);
+          (function () {
             return function (e) {
-              console.log(e, node, tmpID);
+              alert(`Story ${e.target.id} clicked!`);
             };
-          })(this),
+          })(),
           false
         );
-
-        button.innerText = "Go to Story";
-        button.style.marginRight = "5px";
-
-        let component;
-
-        if (node.attrs.id) {
-          component = StoryIcon;
-        }
-
-        const icon = document.createElement("div");
-        icon.className = "icon";
-        ReactDOM.render(component, icon);
 
         return [
           "div",
           { class: `story-block ${node.attrs.id}` },
-          icon,
           ["div", { contentEditable: false }, button],
           ["div", { class: "content story-content" }, 0],
         ];
@@ -79,8 +68,8 @@ export default class Story extends Node {
     return [wrappingInputRule(/^%%%$/, type)];
   }
 
-  toMarkdown(state, node) {
-    state.write("\n%%%" + "story" + "\n");
+  toMarkdown(state: MarkdownSerializerState, node: ProsemirrorNode) {
+    state.write("\n%%%" + (node.attrs.id || "story") + "\n");
     state.renderContent(node);
     state.ensureNewLine();
     state.write("%%%");
@@ -92,8 +81,7 @@ export default class Story extends Node {
     return {
       block: "container_story",
       getAttrs: tok => {
-        console.log(tok);
-        ({ id: tok.info });
+        return { id: tok.info };
       },
     };
   }

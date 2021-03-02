@@ -18,7 +18,9 @@ class Story extends Node_1.default {
     get schema() {
         return {
             attrs: {
-                id: this.randomInt.toString(),
+                id: {
+                    default: "story",
+                },
             },
             content: "block+",
             group: "block",
@@ -34,6 +36,10 @@ class Story extends Node_1.default {
             ],
             toDOM: node => {
                 const button = document.createElement("button");
+                node.attrs.id =
+                    node.attrs.id === "story"
+                        ? Math.round(Math.random() * 10000)
+                        : node.attrs.id;
                 console.log(node.attrs.id);
                 const tmpID = node.attrs.id;
                 button.addEventListener("click", (function (node) {
