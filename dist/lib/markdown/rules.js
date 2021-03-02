@@ -11,6 +11,7 @@ const breaks_1 = __importDefault(require("./breaks"));
 const tables_1 = __importDefault(require("./tables"));
 const notices_1 = __importDefault(require("./notices"));
 const underlines_1 = __importDefault(require("./underlines"));
+const stories_1 = __importDefault(require("./stories"));
 function rules({ embeds }) {
     return markdown_it_1.default("default", {
         breaks: false,
@@ -23,7 +24,8 @@ function rules({ embeds }) {
         .use(mark_1.default({ delim: "!!", mark: "placeholder" }))
         .use(underlines_1.default)
         .use(tables_1.default)
-        .use(notices_1.default);
+        .use(notices_1.default)
+        .use(stories_1.default);
 }
 exports.default = rules;
 //# sourceMappingURL=rules.js.map
