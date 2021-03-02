@@ -43,7 +43,7 @@ class Story extends Node_1.default {
                 button.id = node.attrs.id;
                 button.addEventListener("click", (function () {
                     return function (e) {
-                        alert(`Story ${e.target.id} clicked!`);
+                        this.editor.props.onStoryClick(e.target.id);
                     };
                 })(), false);
                 return [

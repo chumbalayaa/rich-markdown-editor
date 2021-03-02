@@ -44,7 +44,7 @@ export default class Story extends Node {
           "click",
           (function () {
             return function (e) {
-              alert(`Story ${e.target.id} clicked!`);
+              this.editor.props.onStoryClick(e.target.id);
             };
           })(),
           false

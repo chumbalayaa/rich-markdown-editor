@@ -116,6 +116,7 @@ export declare type Props = {
     handleDOMEvents?: {
         [name: string]: (view: EditorView, event: Event) => boolean;
     };
+    onStoryClick: (id: string) => void;
     uploadImage?: (file: File) => Promise<string>;
     onBlur?: () => void;
     onFocus?: () => void;
