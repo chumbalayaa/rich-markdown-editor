@@ -23,6 +23,7 @@ export default class Story extends Node {
         }[];
         toDOM: (node: any) => (string | {
             class: string;
+            id: any;
         } | (string | HTMLButtonElement | {
             contentEditable: boolean;
         })[] | (string | number | {

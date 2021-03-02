@@ -25,15 +25,15 @@ export default class Story extends Node {
           preserveWhitespace: "full",
           contentElement: "div:last-child",
           getAttrs: (ele: HTMLDivElement) => {
-            console.log(ele);
-            return { id: ele.getElementsByClassName("story-button")[0].id };
+            console.log("ele in question ", ele);
+            return { id: ele.id };
           },
         },
       ],
       toDOM: node => {
         node.attrs.id =
           node.attrs.id === "story"
-            ? Math.round(Math.random() * 10000)
+            ? Math.round(Math.random() * 10000).toString()
             : node.attrs.id;
 
         const button = document.createElement("button");
@@ -52,9 +52,9 @@ export default class Story extends Node {
 
         return [
           "div",
-          { class: `story-block ${node.attrs.id}` },
+          { class: `story-block`, id: node.attrs.id },
           ["div", { contentEditable: false }, button],
-          ["div", { class: "content story-content" }, 0],
+          ["div", { class: "content" }, 0],
         ];
       },
     };
@@ -74,7 +74,6 @@ export default class Story extends Node {
     state.ensureNewLine();
     state.write("%%%");
     state.closeBlock(node);
-    console.log(state);
   }
 
   parseMarkdown() {
