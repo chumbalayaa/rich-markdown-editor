@@ -98,6 +98,8 @@ class RichMarkdownEditor extends React.PureComponent {
             });
         };
         this.handleSave = () => {
+            console.log(this.view.state.doc.toString());
+            console.log(this.view);
             const { onSave } = this.props;
             if (onSave) {
                 onSave({ done: false });
@@ -405,6 +407,7 @@ class RichMarkdownEditor extends React.PureComponent {
     }
     createState(value) {
         const doc = this.createDocument(value || this.props.defaultValue);
+        console.log(doc);
         return prosemirror_state_1.EditorState.create({
             schema: this.schema,
             doc,
@@ -421,6 +424,8 @@ class RichMarkdownEditor extends React.PureComponent {
         });
     }
     createDocument(content) {
+        console.log(content);
+        console.log(this.parser.parse(content));
         return this.parser.parse(content);
     }
     createView() {
@@ -750,16 +755,59 @@ const StyledEditor = styled_components_1.default("div") `
   }
 
   .story-block {
-    background: #add8e6;
+    background: #d8ecf3;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     text-align: left;
+    padding: 4px;
+    border: 1px solid #d8ecf3;
+    border-radius: 3px;
+  }
+
+  .story-block button {
+    font-family: Hack, monospace;
+    background: #0f0f6d;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1em;
+    border: 0;
+    transition: all 0.5s;
+    border-radius: 10px;
+    width: auto;
+    position: relative;
+    padding: 0.5em;
+    outline: none;
+
+    &::after {
+      font-family: "Font Awesome 5 Pro";
+      font-weight: 400;
+      position: absolute;
+      left: 85%;
+      top: 31%;
+      right: 5%;
+      bottom: 0;
+      opacity: 0;
+    }
+
+    &:hover {
+      background: #2b2bff;
+      transition: all 0.5s;
+      border-radius: 10px;
+      box-shadow: 0px 6px 15px #0000ff61;
+      padding: 0.5em 1em;
+
+      &::after {
+        opacity: 1;
+        transition: all 0.5s;
+      }
+    }
   }
 
   .story-content {
     text-align: left !important;
-    width: 80%;
+    width: 90%;
+    color: #373536;
   }
 
   blockquote {

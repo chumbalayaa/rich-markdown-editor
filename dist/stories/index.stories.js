@@ -25,7 +25,21 @@ exports.Default = Template.bind({});
 exports.Default.args = {
     defaultValue: `# Welcome
 
-Just an easy to use **Markdown** editor with \`slash commands\``,
+Just an easy to use **Markdown** editor with \`slash commands\`
+
+\\
+:::warning
+BOO!
+:::
+
+%%%1234
+Test
+%%%
+
+:::tip
+Tip
+:::
+`,
 };
 exports.TemplateDoc = Template.bind({});
 exports.TemplateDoc.args = {

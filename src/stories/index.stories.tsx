@@ -25,7 +25,21 @@ export const Default = Template.bind({});
 Default.args = {
   defaultValue: `# Welcome
 
-Just an easy to use **Markdown** editor with \`slash commands\``,
+Just an easy to use **Markdown** editor with \`slash commands\`
+
+\\
+:::warning
+BOO!
+:::
+
+%%%1234
+Test
+%%%
+
+:::tip
+Tip
+:::
+`,
 };
 
 export const TemplateDoc = Template.bind({});

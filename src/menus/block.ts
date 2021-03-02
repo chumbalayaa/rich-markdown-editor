@@ -17,6 +17,7 @@ import {
 } from "outline-icons";
 import { MenuItem } from "../types";
 import baseDictionary from "../dictionary";
+import StoryIcon from "../nodes/StoryIcon";
 
 const SSR = typeof window === "undefined";
 const isMac = !SSR && window.navigator.platform === "MacIntel";
@@ -144,7 +145,7 @@ export default function blockMenuItems(
     {
       name: "container_story",
       title: dictionary.story,
-      icon: WarningIcon,
+      icon: StoryIcon,
       keywords: "container_story",
       attrs: { id: "story" },
     },

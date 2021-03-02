@@ -5,15 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const prosemirror_inputrules_1 = require("prosemirror-inputrules");
 const toggleWrap_1 = __importDefault(require("../commands/toggleWrap"));
-const react_dom_1 = __importDefault(require("react-dom"));
 const Node_1 = __importDefault(require("./Node"));
-const StoryIcon_1 = __importDefault(require("./StoryIcon"));
 class Story extends Node_1.default {
     get name() {
         return "container_story";
-    }
-    get randomInt() {
-        return Math.random() * 10000;
     }
     get schema() {
         return {
@@ -31,36 +26,29 @@ class Story extends Node_1.default {
                     tag: "div.story-block",
                     preserveWhitespace: "full",
                     contentElement: "div:last-child",
-                    getAttrs: () => "story",
+                    getAttrs: (ele) => {
+                        console.log(ele);
+                        return { id: ele.getElementsByClassName("story-button")[0].id };
+                    },
                 },
             ],
             toDOM: node => {
-                const button = document.createElement("button");
                 node.attrs.id =
                     node.attrs.id === "story"
                         ? Math.round(Math.random() * 10000)
                         : node.attrs.id;
-                console.log(node.attrs.id);
-                const tmpID = node.attrs.id;
-                button.addEventListener("click", (function (node) {
-                    console.log(">", node);
+                const button = document.createElement("button");
+                button.className = "story-button";
+                button.innerText = "Story";
+                button.id = node.attrs.id;
+                button.addEventListener("click", (function () {
                     return function (e) {
-                        console.log(e, node, tmpID);
+                        alert(`Story ${e.target.id} clicked!`);
                     };
-                })(this), false);
-                button.innerText = "Go to Story";
-                button.style.marginRight = "5px";
-                let component;
-                if (node.attrs.id) {
-                    component = StoryIcon_1.default;
-                }
-                const icon = document.createElement("div");
-                icon.className = "icon";
-                react_dom_1.default.render(component, icon);
+                })(), false);
                 return [
                     "div",
                     { class: `story-block ${node.attrs.id}` },
-                    icon,
                     ["div", { contentEditable: false }, button],
                     ["div", { class: "content story-content" }, 0],
                 ];
@@ -74,7 +62,7 @@ class Story extends Node_1.default {
         return [prosemirror_inputrules_1.wrappingInputRule(/^%%%$/, type)];
     }
     toMarkdown(state, node) {
-        state.write("\n%%%" + "story" + "\n");
+        state.write("\n%%%" + (node.attrs.id || "story") + "\n");
         state.renderContent(node);
         state.ensureNewLine();
         state.write("%%%");
@@ -85,8 +73,7 @@ class Story extends Node_1.default {
         return {
             block: "container_story",
             getAttrs: tok => {
-                console.log(tok);
-                ({ id: tok.info });
+                return { id: tok.info };
             },
         };
     }

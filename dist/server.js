@@ -20,6 +20,7 @@ const HorizontalRule_1 = __importDefault(require("./nodes/HorizontalRule"));
 const Image_1 = __importDefault(require("./nodes/Image"));
 const ListItem_1 = __importDefault(require("./nodes/ListItem"));
 const Notice_1 = __importDefault(require("./nodes/Notice"));
+const Story_1 = __importDefault(require("./nodes/Story"));
 const OrderedList_1 = __importDefault(require("./nodes/OrderedList"));
 const Paragraph_1 = __importDefault(require("./nodes/Paragraph"));
 const Table_1 = __importDefault(require("./nodes/Table"));
@@ -48,6 +49,7 @@ const extensions = new ExtensionManager_1.default([
     new Embed_1.default(),
     new ListItem_1.default(),
     new Notice_1.default(),
+    new Story_1.default(),
     new Heading_1.default(),
     new HorizontalRule_1.default(),
     new Image_1.default(),

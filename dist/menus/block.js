@@ -1,6 +1,10 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const outline_icons_1 = require("outline-icons");
+const StoryIcon_1 = __importDefault(require("../nodes/StoryIcon"));
 const SSR = typeof window === "undefined";
 const isMac = !SSR && window.navigator.platform === "MacIntel";
 const mod = isMac ? "⌘" : "ctrl";
@@ -124,7 +128,7 @@ function blockMenuItems(dictionary) {
         {
             name: "container_story",
             title: dictionary.story,
-            icon: outline_icons_1.WarningIcon,
+            icon: StoryIcon_1.default,
             keywords: "container_story",
             attrs: { id: "story" },
         },

@@ -117,7 +117,10 @@ class Notice extends Node_1.default {
     parseMarkdown() {
         return {
             block: "container_notice",
-            getAttrs: tok => ({ style: tok.info }),
+            getAttrs: tok => {
+                console.log(tok);
+                return { style: tok.info };
+            },
         };
     }
 }

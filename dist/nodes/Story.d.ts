@@ -1,7 +1,8 @@
+import { MarkdownSerializerState } from "prosemirror-markdown";
+import { Node as ProsemirrorNode } from "prosemirror-model";
 import Node from "./Node";
 export default class Story extends Node {
     get name(): string;
-    get randomInt(): number;
     get schema(): {
         attrs: {
             id: {
@@ -16,9 +17,11 @@ export default class Story extends Node {
             tag: string;
             preserveWhitespace: string;
             contentElement: string;
-            getAttrs: () => string;
+            getAttrs: (ele: HTMLDivElement) => {
+                id: string;
+            };
         }[];
-        toDOM: (node: any) => (string | HTMLDivElement | {
+        toDOM: (node: any) => (string | {
             class: string;
         } | (string | HTMLButtonElement | {
             contentEditable: boolean;
@@ -32,10 +35,12 @@ export default class Story extends Node {
     inputRules({ type }: {
         type: any;
     }): import("prosemirror-inputrules").InputRule<any>[];
-    toMarkdown(state: any, node: any): void;
+    toMarkdown(state: MarkdownSerializerState, node: ProsemirrorNode): void;
     parseMarkdown(): {
         block: string;
-        getAttrs: (tok: any) => void;
+        getAttrs: (tok: any) => {
+            id: any;
+        };
     };
 }
 //# sourceMappingURL=Story.d.ts.map

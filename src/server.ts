@@ -17,6 +17,7 @@ import HorizontalRule from "./nodes/HorizontalRule";
 import Image from "./nodes/Image";
 import ListItem from "./nodes/ListItem";
 import Notice from "./nodes/Notice";
+import Story from "./nodes/Story";
 import OrderedList from "./nodes/OrderedList";
 import Paragraph from "./nodes/Paragraph";
 import Table from "./nodes/Table";
@@ -48,6 +49,7 @@ const extensions = new ExtensionManager([
   new Embed(),
   new ListItem(),
   new Notice(),
+  new Story(),
   new Heading(),
   new HorizontalRule(),
   new Image(),
