@@ -755,7 +755,7 @@ const StyledEditor = styled_components_1.default("div") `
   }
 
   .story-block {
-    background: #d8ecf3;
+    background: #b9f7ef;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -767,13 +767,15 @@ const StyledEditor = styled_components_1.default("div") `
 
   .story-block button {
     font-family: Hack, monospace;
-    background: #0f0f6d;
-    color: #ffffff;
+    background: transparent;
+    border-right: 5px solid #373536;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    color: #373536;
     cursor: pointer;
     font-size: 1em;
-    border: 0;
     transition: all 0.5s;
-    border-radius: 10px;
     width: auto;
     position: relative;
     padding: 0.5em;
@@ -791,10 +793,9 @@ const StyledEditor = styled_components_1.default("div") `
     }
 
     &:hover {
-      background: #2b2bff;
       transition: all 0.5s;
-      border-radius: 10px;
-      box-shadow: 0px 6px 15px #0000ff61;
+      border-right: none;
+      box-shadow: 0px 6px 15px #14b6a1;
       padding: 0.5em 1em;
 
       &::after {
@@ -808,6 +809,7 @@ const StyledEditor = styled_components_1.default("div") `
     text-align: left !important;
     width: 90%;
     color: #373536;
+    margin-left: 15px;
   }
 
   blockquote {
